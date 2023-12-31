@@ -1,6 +1,4 @@
-﻿using DillonColeman_SkyPayAssessment.Models.UserModel;
-
-namespace DillonColeman_SkyPayAssessment.Helpers
+﻿namespace DillonColeman_SkyPayAssessment.Helpers
 {
     // For more information visit: https://docs.automapper.org/en/stable/Configuration.html
     public class AutoMapperProfile : Profile
@@ -35,6 +33,21 @@ namespace DillonColeman_SkyPayAssessment.Helpers
             CreateMap<UpdateUserDto, GetUserDto>();
             CreateMap<GetUserDto, DeleteUserDto>();
             CreateMap<DeleteUserDto, GetUserDto>();
+            CreateMap<GetVacancyDto, Vacancy>();
+            CreateMap<Vacancy, GetVacancyDto>();
+            CreateMap<CreateVacancyDto, Vacancy>();
+            CreateMap<Vacancy, CreateVacancyDto>();
+            CreateMap<UpdateVacancyDto, Vacancy>();
+            CreateMap<Vacancy, UpdateVacancyDto>()
+                .ForMember(destination => destination.ExpiresOn, opt => opt.Ignore());
+            CreateMap<DeleteVacancyDto, Vacancy>();
+            CreateMap<Vacancy, DeleteVacancyDto>();
+            CreateMap<GetVacancyDto, UpdateVacancyDto>();
+            CreateMap<UpdateVacancyDto, GetVacancyDto>();
+            CreateMap<GetVacancyDto, DeleteVacancyDto>();
+            CreateMap<DeleteVacancyDto, GetVacancyDto>();
+            CreateMap<CreateVacancyDto, GetVacancyDto>();
+            CreateMap<GetVacancyDto, CreateVacancyDto>();
         }
     }
 }

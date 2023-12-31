@@ -1,9 +1,13 @@
 global using AutoMapper;
 global using DillonColeman_SkyPayAssessment.Dtos.UserDtos;
+global using DillonColeman_SkyPayAssessment.Dtos.VacancyDtos;
+global using DillonColeman_SkyPayAssessment.Exceptions;
 global using DillonColeman_SkyPayAssessment.Helpers;
+global using DillonColeman_SkyPayAssessment.Models.UserModel;
+global using DillonColeman_SkyPayAssessment.Models.VacancyModel;
+global using DillonColeman_SkyPayAssessment.Service.UserService;
+global using DillonColeman_SkyPayAssessment.Service.VacancyService;
 global using Microsoft.EntityFrameworkCore;
-using DillonColeman_SkyPayAssessment.Models.UserModel;
-using DillonColeman_SkyPayAssessment.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -17,6 +21,8 @@ builder.Services.AddAutoMapper(typeof(Program), typeof(AutoMapperProfile));
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+builder.Services.AddScoped<IVacancyService, VacancyService>();
+builder.Services.AddDbContext<VacancyContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

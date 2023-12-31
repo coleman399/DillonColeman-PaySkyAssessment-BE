@@ -1,13 +1,11 @@
-﻿using DillonColeman_SkyPayAssessment.Exceptions;
-using DillonColeman_SkyPayAssessment.Models.UserModel;
-using Microsoft.AspNetCore.Http.Extensions;
+﻿using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DillonColeman_SkyPayAssessment.Service
+namespace DillonColeman_SkyPayAssessment.Service.UserService
 {
     public class UserService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, UserContext userContext, IMapper mapper) : IUserService
     {
@@ -208,7 +206,7 @@ namespace DillonColeman_SkyPayAssessment.Service
                 User? dbUser = null;
                 foreach (User user in dbUsers)
                 {
-                    if (loginUser.Email != null && user.Email == loginUser.Email || loginUser.UserName != null && user.UserName == loginUser.UserName)
+                    if (!loginUser.Email.IsNullOrEmpty() && user.Email == loginUser.Email || !loginUser.UserName.IsNullOrEmpty() && user.UserName == loginUser.UserName)
                     {
                         userFound = true;
                         if (BCrypt.Net.BCrypt.Verify(loginUser.Password, user.PasswordHash))
@@ -219,7 +217,6 @@ namespace DillonColeman_SkyPayAssessment.Service
                             SetRefreshToken(user.RefreshToken);
                             _userContext.Users.Update(user);
                             _userContext.SaveChanges();
-                            serviceResponse.Data = _mapper.Map<GetLoggedInUserDto>(user);
                             dbUser = user;
                         }
                         else
@@ -227,17 +224,15 @@ namespace DillonColeman_SkyPayAssessment.Service
                             throw new UnauthorizedAccessException();
                         }
                     }
-                    else
-                    {
-                        throw new UserNotFoundException();
-                    }
                 }
-
                 if (userFound && userVerified)
                 {
-                    // Check if tokens were saved
-                    if (dbUser == null) throw new UserFailedToUpdateException();
+                    serviceResponse.Data = _mapper.Map<GetLoggedInUserDto>(dbUser);
                     serviceResponse.Message = "User logged in successfully.";
+                }
+                else
+                {
+                    throw new UserNotFoundException();
                 }
             }
             catch (Exception exception)

@@ -1,7 +1,4 @@
-﻿
-using DillonColeman_SkyPayAssessment.Models.UserModel;
-
-namespace DillonColeman_SkyPayAssessment.Service
+﻿namespace DillonColeman_SkyPayAssessment.Service.UserService
 {
     public interface IUserService
     {

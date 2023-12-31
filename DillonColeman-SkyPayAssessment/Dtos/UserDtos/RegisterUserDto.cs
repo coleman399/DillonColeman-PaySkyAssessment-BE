@@ -10,7 +10,7 @@ namespace DillonColeman_SkyPayAssessment.Dtos.UserDtos
         [Required, EmailAddress]
         public required string Email { get; set; }
         [Required]
-        public required string Role { get; set; } = "User";
+        public required string Role { get; set; } = string.Empty;
         [Required]
         public required string Password { get; set; }
         [Required, Compare("Password")]

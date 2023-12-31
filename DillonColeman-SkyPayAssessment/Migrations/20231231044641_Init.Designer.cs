@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DillonColeman_SkyPayAssessment.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20231230055426_Initial")]
-    partial class Initial
+    [Migration("20231231044641_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

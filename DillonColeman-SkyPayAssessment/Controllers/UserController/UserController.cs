@@ -1,6 +1,4 @@
-﻿using DillonColeman_SkyPayAssessment.Models.UserModel;
-using DillonColeman_SkyPayAssessment.Service;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DillonColeman_SkyPayAssessment.Controllers.UserController
