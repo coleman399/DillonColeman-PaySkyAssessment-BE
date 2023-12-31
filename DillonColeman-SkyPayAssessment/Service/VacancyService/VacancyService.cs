@@ -185,6 +185,7 @@ namespace DillonColeman_SkyPayAssessment.Service.VacancyService
                 else
                 {
                     serviceResponse.Data = _mapper.Map<GetVacancyDto>(vacancy);
+                    serviceResponse.Data.Applicates = [.. _vacancyContext.Applicants.Where(a => a.VacancyId == vacancy.Id)];
                     serviceResponse.Message = "Vacancy retrieved successfully.";
                 }
             }

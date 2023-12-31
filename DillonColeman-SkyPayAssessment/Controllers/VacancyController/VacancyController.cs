@@ -11,7 +11,7 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
         private readonly IVacancyService _vacancyService = vacancyService;
         private readonly ILogger<VacancyController> _logger = logger;
 
-        // POST api/Vacancy/getVacancies
+        // GET api/Vacancy/getVacancies
         [HttpGet("getVacancies"), AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
