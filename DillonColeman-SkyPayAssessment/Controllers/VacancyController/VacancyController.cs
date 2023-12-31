@@ -6,9 +6,10 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]")]
-    public class VacancyController(IVacancyService vacancyService) : ControllerBase
+    public class VacancyController(IVacancyService vacancyService, ILogger<VacancyController> logger) : ControllerBase
     {
         private readonly IVacancyService _vacancyService = vacancyService;
+        private readonly ILogger<VacancyController> _logger = logger;
 
         // POST api/Vacancy/getVacancies
         [HttpGet("getVacancies"), AllowAnonymous]
@@ -17,7 +18,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
         public async Task<ActionResult<VacancyServiceResponse<List<GetVacancyDto>>>> GetVacancies()
         {
             VacancyServiceResponse<List<GetVacancyDto>> result = await _vacancyService.GetVacancies();
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"GetVacancies() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"GetVacancies() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
@@ -28,7 +31,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
         public async Task<ActionResult<VacancyServiceResponse<GetVacancyDto>>> CreateVacancy([FromBody] CreateVacancyDto newVacancy)
         {
             VacancyServiceResponse<GetVacancyDto> result = await _vacancyService.CreateVacancy(newVacancy);
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"CreateVacancy() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"CreateVacancy() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Created("createVacancy", result);
         }
 
@@ -39,7 +44,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
         public async Task<ActionResult<VacancyServiceResponse<GetVacancyDto>>> UpdateVacancy([FromBody] UpdateVacancyDto vacancy, [FromQuery] int id)
         {
             VacancyServiceResponse<GetVacancyDto> result = await _vacancyService.UpdateVacancy(vacancy, id);
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"UpdateVacancy() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"UpdateVacancy() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
@@ -50,7 +57,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
         public async Task<ActionResult<VacancyServiceResponse<List<GetVacancyDto>>>> DeleteVacancy([FromQuery] int id)
         {
             VacancyServiceResponse<DeleteVacancyDto> result = await _vacancyService.DeleteVacancy(id);
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"DeleteVacancy() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"DeleteVacancy() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
@@ -61,7 +70,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
         public async Task<ActionResult<VacancyServiceResponse<GetVacancyDto>>> ApplyForVacancy([FromQuery] int id)
         {
             VacancyServiceResponse<GetVacancyDto> result = await _vacancyService.ApplyForVacancy(id);
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"ApplyForVacancy() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"ApplyForVacancy() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
@@ -72,7 +83,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
         public async Task<ActionResult<VacancyServiceResponse<GetVacancyDto>>> GetVacancy([FromQuery] int id)
         {
             VacancyServiceResponse<GetVacancyDto> result = await _vacancyService.GetVacancy(id);
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"GetVacancy() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"GetVacancy() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
     }

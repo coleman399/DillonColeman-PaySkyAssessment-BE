@@ -11,34 +11,43 @@ global using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddAutoMapper(typeof(Program), typeof(AutoMapperProfile));
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
-builder.Services.AddScoped<IVacancyService, VacancyService>();
-builder.Services.AddDbContext<VacancyContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
+// Serilog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+try
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "DillonColeman-SkyPayAssessment", Version = GlobalConstants.VERSION });
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    var builder = WebApplication.CreateBuilder(args);
+    // Add services to the container.
+
+    builder.Services.AddControllers();
+    builder.Services.AddAutoMapper(typeof(Program), typeof(AutoMapperProfile));
+    builder.Services.AddHttpContextAccessor();
+    builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+    builder.Services.AddScoped<IVacancyService, VacancyService>();
+    builder.Services.AddDbContext<VacancyContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen(options =>
     {
-        Description = "JWT Authorization header using the Bearer scheme. Example: Bearer <token>",
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        BearerFormat = "JWT",
-        Scheme = "bearer",
-    });
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        options.SwaggerDoc("v1", new OpenApiInfo { Title = "DillonColeman-SkyPayAssessment", Version = GlobalConstants.VERSION });
+        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
+            Description = "JWT Authorization header using the Bearer scheme. Example: Bearer <token>",
+            In = ParameterLocation.Header,
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            BearerFormat = "JWT",
+            Scheme = "bearer",
+        });
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
             {
                 new OpenApiSecurityScheme
                 {
@@ -50,34 +59,43 @@ builder.Services.AddSwaggerGen(options =>
                 },
                 Array.Empty<string>()
             },
-        });
-});
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            ValidateAudience = false,
-            ValidateIssuer = false,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSecurityKey"]!)),
-        };
+            });
     });
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSecurityKey"]!)),
+            };
+        });
 
-var app = builder.Build();
+    var app = builder.Build();
 
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

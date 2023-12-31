@@ -6,9 +6,10 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController(IUserService userService) : ControllerBase
+    public class UserController(IUserService userService, ILogger<UserController> logger) : ControllerBase
     {
         private readonly IUserService _userService = userService;
+        private readonly ILogger<UserController> _logger = logger;
 
         // POST api/User/getUsers
         [HttpGet("getUsers"), AllowAnonymous]
@@ -17,7 +18,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<List<GetUserDto>>>> GetUsers()
         {
             UserServiceResponse<List<GetUserDto>> result = await _userService.GetUsers();
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"GetUsers() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"GetUsers() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
@@ -29,7 +32,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<GetUserDto>>> RegisterUser([FromBody] RegisterUserDto newUser)
         {
             UserServiceResponse<GetUserDto> result = await _userService.RegisterUser(newUser);
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"RegisterUser() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"RegisterUser() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             if (result.Data == null && result.Success == true) return Unauthorized();
             return Created("register", result);
         }
@@ -41,7 +46,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<GetLoggedInUserDto>>> LoginUser([FromBody] LoginUserDto loginUser)
         {
             UserServiceResponse<GetLoggedInUserDto> result = await _userService.LoginUser(loginUser);
-            if (result.Success == false) return Unauthorized(result);
+            if (result.Success) _logger.LogInformation($"LoginUser() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"LoginUser() called: {result.Message}");
+            if (!result.Success) return Unauthorized(result);
             return Ok(result);
         }
 
@@ -53,8 +60,10 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<GetLoggedInUserDto>>> UpdateUser([FromBody] UpdateUserDto user)
         {
             UserServiceResponse<GetLoggedInUserDto> result = await _userService.UpdateUser(user);
-            if (result.Success == false) return BadRequest(result);
-            if (result.Data == null && result.Success == true) return Unauthorized();
+            if (result.Success) _logger.LogInformation($"UpdateUser() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"UpdateUser() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
+            if (result.Data == null && result.Success) return Unauthorized();
             return Ok(result);
         }
 
@@ -66,8 +75,10 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<DeleteUserDto>>> DeleteUser()
         {
             UserServiceResponse<DeleteUserDto> result = await _userService.DeleteUser();
-            if (result.Success == false) return BadRequest(result);
-            if (result.Data == null && result.Success == true) return Unauthorized();
+            if (result.Success) _logger.LogInformation($"DeleteUser() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"DeleteUser() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
+            if (result.Data == null && result.Success) return Unauthorized();
             return Ok(result);
         }
 
@@ -79,8 +90,11 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<GetLoggedInUserDto>>> RefreshToken()
         {
             UserServiceResponse<GetLoggedInUserDto> result = await _userService.RefreshToken();
-            if (result.Success == false) return BadRequest(result);
-            if (result.Data == null && result.Success == true) return Unauthorized();
+            if (result.Success) _logger.LogInformation($"RefreshToken() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"RefreshToken() called: {result.Message}");
+            _logger.LogInformation($"RefreshToken() called: {result.Data}");
+            if (!result.Success) return BadRequest(result);
+            if (result.Data == null && result.Success) return Unauthorized();
             return Ok(result);
         }
 
@@ -92,8 +106,11 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<GetLoggedOutUserDto>>> LogoutUser()
         {
             UserServiceResponse<GetLoggedOutUserDto> result = await _userService.LogoutUser();
-            if (result.Success == false) return BadRequest(result);
-            if (result.Data == null && result.Success == true) return Unauthorized();
+            if (result.Success) _logger.LogInformation($"LogoutUser() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"LogoutUser() called: {result.Message}");
+            _logger.LogInformation($"LogoutUser() called: {result.Data}");
+            if (!result.Success) return BadRequest(result);
+            if (result.Data == null && result.Success) return Unauthorized();
             return Ok(result);
 
         }
@@ -105,7 +122,9 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<GetForgotPasswordUserDto>>> ForgotPassword(ForgotPasswordUserDto user)
         {
             UserServiceResponse<GetForgotPasswordUserDto> result = await _userService.ForgotPassword(user);
-            if (result.Success == false) return BadRequest(result);
+            if (result.Success) _logger.LogInformation($"ForgotPassword() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"ForgotPassword() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
@@ -117,8 +136,10 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<GetResetPasswordUserDto>>> ResetPasswordConfirmation([FromQuery] string token)
         {
             UserServiceResponse<GetResetPasswordUserDto> result = await _userService.ResetPasswordConfirmation(token);
-            if (result.Success == false) return BadRequest(result);
-            if (result.Data == null && result.Success == true) return Unauthorized();
+            if (result.Success) _logger.LogInformation($"ResetPasswordConfirmation() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"ResetPasswordConfirmation() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
+            if (result.Data == null && result.Success) return Unauthorized();
             return Ok(result);
         }
 
@@ -130,8 +151,10 @@ namespace DillonColeman_SkyPayAssessment.Controllers.UserController
         public async Task<ActionResult<UserServiceResponse<PasswordResetUserDto>>> ResetPassword([FromBody] ResetPasswordUserDto resetPassword)
         {
             UserServiceResponse<PasswordResetUserDto> result = await _userService.ResetPassword(resetPassword);
-            if (result.Success == false) return BadRequest(result);
-            if (result.Data == null && result.Success == true) return Unauthorized();
+            if (result.Success) _logger.LogInformation($"ResetPassword() called: {result.Data}");
+            if (!result.Success) _logger.LogInformation($"ResetPassword() called: {result.Message}");
+            if (!result.Success) return BadRequest(result);
+            if (result.Data == null && result.Success) return Unauthorized();
             return Ok(result);
         }
     }
