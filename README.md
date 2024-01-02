@@ -51,11 +51,7 @@ Follow these steps to set up and run the application:
 
 7. **Archiving Mechanism**:
    - The application includes an archiving mechanism for expired vacancies to maintain data integrity.
-
-8. **APIs and UI**:
-   - The application provides fully functional APIs. Additionally, a user interface (UI) is available for easy interaction, but it is not mandatory.
-
-9. **Architecture and Considerations**:
+8. **Architecture and Considerations**:
    - The application follows a traditional N-Tier Architecture.
    - MS SQL Server is used for the database.
    - Considerations have been made for caching, logging, and system security.
