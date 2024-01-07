@@ -1,10 +1,10 @@
-# DillonColeman-SkyPayAssessment
+# DillonColeman-PaySkyAssessment
 
 ## Overview
-DillonColeman-SkyPayAssessment is a .NET 8 application designed to meet the requirements of the SkyPay Assessment. The application provides functionality for two user types: Employers and Applicants, each with specific roles and functions. The system offers features such as user registration, login, vacancy management, application submission, and more. This README provides instructions for setting up and running the application.
+DillonColeman-PaySkyAssessment is a .NET 8 application designed to meet the requirements of the PaySky Assessment. The application provides functionality for two user types: Employers and Applicants, each with specific roles and functions. The system offers features such as user registration, login, vacancy management, application submission, and more. This README provides instructions for setting up and running the application.
 
 ## System Requirements
-To successfully run the SkyPay Assessment application, ensure that you have the following components in place:
+To successfully run the PaySky Assessment application, ensure that you have the following components in place:
 
 - .NET 8 runtime or SDK installed
 - Microsoft SQL Server for the database
@@ -14,7 +14,7 @@ To successfully run the SkyPay Assessment application, ensure that you have the 
 
 Follow these steps to set up and run the application:
 
-1. **Download the Application**: Download the SkyPay Assessment application to your local machine.
+1. **Download the Application**: Download the PaySky Assessment application to your local machine.
 
 2. **Configure Database Connection**:
    - Open the application in Visual Studio or your preferred IDE.
@@ -51,11 +51,7 @@ Follow these steps to set up and run the application:
 
 7. **Archiving Mechanism**:
    - The application includes an archiving mechanism for expired vacancies to maintain data integrity.
-
-8. **APIs and UI**:
-   - The application provides fully functional APIs. Additionally, a user interface (UI) is available for easy interaction, but it is not mandatory.
-
-9. **Architecture and Considerations**:
+8. **Architecture and Considerations**:
    - The application follows a traditional N-Tier Architecture.
    - MS SQL Server is used for the database.
    - Considerations have been made for caching, logging, and system security.
@@ -64,4 +60,4 @@ Follow these steps to set up and run the application:
 ## Support and Feedback
 If you encounter any issues, have questions, or would like to provide feedback, please contact the developer (Dillon Coleman) at [coleman399@gmail.com].
 
-Thank you for exploring DillonColeman-SkyPayAssessment!
+Thank you for exploring DillonColeman-PaySkyAssessment!
