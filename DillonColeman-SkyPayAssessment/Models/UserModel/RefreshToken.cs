@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DillonColeman_SkyPayAssessment.Models.UserModel
+namespace DillonColeman_PaySkyAssessment.Models.UserModel
 {
     public class RefreshToken
     {

@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Helpers
+﻿namespace DillonColeman_PaySkyAssessment.Helpers
 {
     // For more information visit: https://docs.automapper.org/en/stable/Configuration.html
     public class AutoMapperProfile : Profile

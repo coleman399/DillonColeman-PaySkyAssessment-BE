@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace DillonColeman_SkyPayAssessment.Helpers
+namespace DillonColeman_PaySkyAssessment.Helpers
 {
     public class RegexFilters
     {

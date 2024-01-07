@@ -1,6 +1,6 @@
-﻿using DillonColeman_SkyPayAssessment.Models.VacancyModel;
+﻿using DillonColeman_PaySkyAssessment.Models.VacancyModel;
 
-namespace DillonColeman_SkyPayAssessment.Dtos.VacancyDtos
+namespace DillonColeman_PaySkyAssessment.Dtos.VacancyDtos
 {
     public class GetVacancyDto
     {

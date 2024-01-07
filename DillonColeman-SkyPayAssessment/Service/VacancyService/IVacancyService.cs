@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Service.VacancyService
+﻿namespace DillonColeman_PaySkyAssessment.Service.VacancyService
 {
     public interface IVacancyService
     {

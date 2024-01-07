@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DillonColeman_SkyPayAssessment.Migrations.Vacancy
+namespace DillonColeman_PaySkyAssessment.Migrations.Vacancy
 {
     /// <inheritdoc />
     public partial class Init : Migration

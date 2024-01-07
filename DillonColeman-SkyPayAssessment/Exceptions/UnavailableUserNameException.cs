@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Exceptions
+﻿namespace DillonColeman_PaySkyAssessment.Exceptions
 {
     [Serializable]
     public class UnavailableUserNameException : Exception

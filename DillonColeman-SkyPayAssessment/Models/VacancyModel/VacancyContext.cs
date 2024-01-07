@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Models.VacancyModel
+﻿namespace DillonColeman_PaySkyAssessment.Models.VacancyModel
 {
     public class VacancyContext : DbContext
     {

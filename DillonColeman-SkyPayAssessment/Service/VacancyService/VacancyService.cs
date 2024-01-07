@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 
-namespace DillonColeman_SkyPayAssessment.Service.VacancyService
+namespace DillonColeman_PaySkyAssessment.Service.VacancyService
 {
     public class VacancyService(VacancyContext vacancyContext, IMapper mapper, IHttpContextAccessor httpContextAccessor, UserContext userContext) : IVacancyService
     {

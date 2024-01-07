@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace DillonColeman_SkyPayAssessment.Dtos.VacancyDtos
+namespace DillonColeman_PaySkyAssessment.Dtos.VacancyDtos
 {
     public class UpdateVacancyDto
     {

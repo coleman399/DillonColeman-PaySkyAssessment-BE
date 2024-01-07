@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace DillonColeman_SkyPayAssessment.Models.VacancyModel
+namespace DillonColeman_PaySkyAssessment.Models.VacancyModel
 {
     public class Applicant
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DillonColeman_SkyPayAssessment.Controllers.UserController
+namespace DillonColeman_PaySkyAssessment.Controllers.UserController
 {
     [ApiVersion("1.0")]
     [ApiController]

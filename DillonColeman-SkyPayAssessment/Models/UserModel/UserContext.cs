@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Models.UserModel
+﻿namespace DillonColeman_PaySkyAssessment.Models.UserModel
 {
     public class UserContext : DbContext
     {

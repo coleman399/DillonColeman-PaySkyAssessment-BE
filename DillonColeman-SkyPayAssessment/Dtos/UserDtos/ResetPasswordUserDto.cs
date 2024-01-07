@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DillonColeman_SkyPayAssessment.Dtos.UserDtos
+namespace DillonColeman_PaySkyAssessment.Dtos.UserDtos
 {
     public class ResetPasswordUserDto
     {

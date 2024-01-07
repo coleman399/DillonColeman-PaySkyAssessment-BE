@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Exceptions
+﻿namespace DillonColeman_PaySkyAssessment.Exceptions
 {
     [Serializable]
     public class InvalidRoleException(string invalidRole) : Exception("Invalid Role: " + invalidRole + ". Valid roles include Admin and User.")

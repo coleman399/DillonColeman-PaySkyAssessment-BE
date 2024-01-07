@@ -1,12 +1,12 @@
 global using AutoMapper;
-global using DillonColeman_SkyPayAssessment.Dtos.UserDtos;
-global using DillonColeman_SkyPayAssessment.Dtos.VacancyDtos;
-global using DillonColeman_SkyPayAssessment.Exceptions;
-global using DillonColeman_SkyPayAssessment.Helpers;
-global using DillonColeman_SkyPayAssessment.Models.UserModel;
-global using DillonColeman_SkyPayAssessment.Models.VacancyModel;
-global using DillonColeman_SkyPayAssessment.Service.UserService;
-global using DillonColeman_SkyPayAssessment.Service.VacancyService;
+global using DillonColeman_PaySkyAssessment.Dtos.UserDtos;
+global using DillonColeman_PaySkyAssessment.Dtos.VacancyDtos;
+global using DillonColeman_PaySkyAssessment.Exceptions;
+global using DillonColeman_PaySkyAssessment.Helpers;
+global using DillonColeman_PaySkyAssessment.Models.UserModel;
+global using DillonColeman_PaySkyAssessment.Models.VacancyModel;
+global using DillonColeman_PaySkyAssessment.Service.UserService;
+global using DillonColeman_PaySkyAssessment.Service.VacancyService;
 global using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -36,7 +36,7 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen(options =>
     {
-        options.SwaggerDoc("v1", new OpenApiInfo { Title = "DillonColeman-SkyPayAssessment", Version = GlobalConstants.VERSION });
+        options.SwaggerDoc("v1", new OpenApiInfo { Title = "DillonColeman-PaySkyAssessment", Version = GlobalConstants.VERSION });
         options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             Description = "JWT Authorization header using the Bearer scheme. Example: Bearer <token>",

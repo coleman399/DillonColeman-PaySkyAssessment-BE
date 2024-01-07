@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DillonColeman_SkyPayAssessment.Models.VacancyModel
+namespace DillonColeman_PaySkyAssessment.Models.VacancyModel
 {
     public class Vacancy
     {

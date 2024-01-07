@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Dtos.VacancyDtos
+﻿namespace DillonColeman_PaySkyAssessment.Dtos.VacancyDtos
 {
     public class DeleteVacancyDto
     {

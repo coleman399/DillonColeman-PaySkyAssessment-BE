@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DillonColeman_SkyPayAssessment.Controllers.VacancyController
+namespace DillonColeman_PaySkyAssessment.Controllers.VacancyController
 {
     [ApiVersion("1.0")]
     [ApiController]

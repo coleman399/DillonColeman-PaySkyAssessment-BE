@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Service.UserService
+﻿namespace DillonColeman_PaySkyAssessment.Service.UserService
 {
     public interface IUserService
     {

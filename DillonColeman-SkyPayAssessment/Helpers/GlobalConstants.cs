@@ -1,4 +1,4 @@
-﻿namespace DillonColeman_SkyPayAssessment.Helpers
+﻿namespace DillonColeman_PaySkyAssessment.Helpers
 {
     public class GlobalConstants
     {

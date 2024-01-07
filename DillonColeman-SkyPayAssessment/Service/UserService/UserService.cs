@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DillonColeman_SkyPayAssessment.Service.UserService
+namespace DillonColeman_PaySkyAssessment.Service.UserService
 {
     public class UserService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, UserContext userContext, IMapper mapper) : IUserService
     {
