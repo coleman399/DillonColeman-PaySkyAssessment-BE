@@ -8,6 +8,7 @@ global using DillonColeman_PaySkyAssessment.Models.VacancyModel;
 global using DillonColeman_PaySkyAssessment.Service.UserService;
 global using DillonColeman_PaySkyAssessment.Service.VacancyService;
 global using Microsoft.EntityFrameworkCore;
+global using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
